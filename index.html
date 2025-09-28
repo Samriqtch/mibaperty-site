@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mibaperty - Agroalimentaire</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+  <style>
+    html, body {
+      width: 100%;
+      overflow-x: hidden;
+      background: #fff;
+      color: #222;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+    .navbar {
+      background: #43a047 !important;
+      box-shadow: 0 2px 16px rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid #388e3c;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding-top: 0.3rem;
+      padding-bottom: 0.3rem;
+      min-height: 58px;
+    }
+    .navbar-brand img {
+      height: 36px;
+      width: 36px;
+      margin-right: 10px;
+    }
+    .navbar-brand {
+      font-size: 1.3rem;
+      padding-top: 2px;
+      padding-bottom: 2px;
+      color: #fff !important;
+      font-weight: bold !important;
+    }
+    .nav-link {
+      padding: 6px 16px;
+      font-size: 1rem;
+    }
+    .nav-link.active, .nav-link:hover {
+      background: #388e3c;
+      color: #fff !important;
+    }
+    .hero-section {
+      width: 100vw;
+      min-height: 600px;
+      background: url('fond.png') center center/cover no-repeat;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(34, 34, 34, 0.45);
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      color: #fff;
+      text-align: center;
+      width: 100%;
+      max-width: 700px;
+      margin: auto;
+      padding: 0 20px;
+    }
+    .hero-content h1 {
+      font-size: 3.2rem;
+      font-weight: bold;
+      margin-bottom: 18px;
+      letter-spacing: 2px;
+      text-shadow: 0 2px 12px #222;
+    }
+    .hero-content p {
+      font-size: 1.5rem;
+      margin-bottom: 32px;
+      text-shadow: 0 1px 8px #222;
+    }
+    .hero-content .btn-main {
+      background: #fff;
+      color: #43a047;
+      font-weight: bold;
+      font-size: 1.15rem;
+      border-radius: 30px;
+      padding: 14px 38px;
+      box-shadow: 0 2px 12px #43a04733;
+      border: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .hero-content .btn-main:hover {
+      background: #43a047;
+      color: #fff;
+    }
+    @media (max-width: 900px) {
+      .hero-section { min-height: 350px; }
+      .hero-content h1 { font-size: 2.1rem; }
+      .hero-content p { font-size: 1.1rem; }
+    }
+    @media (max-width: 600px) {
+      .hero-section { min-height: 220px; }
+      .hero-content h1 { font-size: 1.3rem; }
+      .hero-content p { font-size: 0.95rem; }
+    }
+    .section-title {
+      color: #43a047;
+      font-weight: bold;
+      font-size: 2.1rem;
+      margin-bottom: 32px;
+      letter-spacing: 1px;
+      text-align: left;
+      border-left: 6px solid #43a047;
+      padding-left: 14px;
+    }
+    .features-row {
+      background: #e8f5e9;
+      border-radius: 18px;
+      box-shadow: 0 2px 12px #43a04711;
+      padding: 32px 0;
+      margin-bottom: 48px;
+    }
+    .feature-icon {
+      font-size: 2.2rem;
+      color: #43a047;
+      margin-bottom: 12px;
+    }
+    .feature-title {
+      font-weight: bold;
+      color: #388e3c;
+      margin-bottom: 6px;
+      font-size: 1.1rem;
+    }
+    .card {
+      border-radius: 18px;
+      box-shadow: 0 2px 16px rgba(67,160,71,0.07);
+      border: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      background: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .card:hover {
+      transform: translateY(-8px) scale(1.04);
+      box-shadow: 0 8px 32px rgba(67,160,71,0.18);
+      border-color: #43a047;
+    }
+    .card-img-top {
+      width: 110px;
+      height: 110px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid #e8f5e9;
+      margin: 18px auto 0 auto;
+      background: #fff;
+      box-shadow: 0 2px 8px #43a04733;
+      display: block;
+    }
+    .card-title {
+      color: #43a047;
+      font-weight: bold;
+      font-size: 1.25rem;
+      margin-top: 12px;
+    }
+    .prix {
+      color: #388e3c;
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .btn-mibaperty {
+      background: #43a047;
+      color: #fff;
+      font-weight: bold;
+      border-radius: 20px;
+      box-shadow: 0 2px 8px #43a04744;
+      border: none;
+      transition: background 0.2s, box-shadow 0.2s;
+      margin-top: 10px;
+    }
+    .btn-mibaperty:hover {
+      background: #388e3c;
+      color: #fff;
+      box-shadow: 0 4px 16px #43a04733;
+    }
+    .form-control:focus, .form-select:focus, textarea:focus {
+      border-color: #43a047;
+      box-shadow: 0 0 0 0.2rem #43a04744;
+      background: #e8f5e9;
+    }
+    footer {
+      text-align: center;
+      padding: 32px 0 18px 0;
+      background: #43a047;
+      color: #fff;
+      font-size: 1.08rem;
+      letter-spacing: 1px;
+      margin-top: 60px;
+      border-top-left-radius: 30px;
+      border-top-right-radius: 30px;
+      box-shadow: 0 -2px 12px #43a04722;
+    }
+    .footer-links a {
+      color: #fff;
+      margin: 0 10px;
+      text-decoration: underline;
+      font-weight: 500;
+      font-size: 1rem;
+    }
+    .footer-links a:hover {
+      color: #e8f5e9;
+    }
+    .apropos-text {
+      font-size: 1.35rem;
+      line-height: 2.1rem;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg mb-4">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="logo.png" alt="Logo Mibaperty">
+        Mibaperty
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link active" href="#accueil">Accueil</a></li>
+          <li class="nav-item"><a class="nav-link" href="#apropos">À propos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#produits">Produits</a></li>
+          <li class="nav-item"><a class="nav-link" href="#commander">Commander</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION FULL WIDTH -->
+  <section id="accueil" class="hero-section">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Valorisation des produits locaux togolais</h1>
+      <p>Production artisanale d’huile de palme vierge et de vin de palme traditionnel, pour une alimentation saine et authentique.</p>
+      <a href="#commander" class="btn btn-main">Commander maintenant</a>
+    </div>
+  </section>
+  <br>
+  <br>
+  <!-- Features / Avantages -->
+  <div class="container features-row mb-5">
+    <div class="row text-center">
+      <div class="col-md-4 mb-3 mb-md-0">
+        <div class="feature-icon"><i class="fa-solid fa-leaf"></i></div>
+        <div class="feature-title">Produits naturels</div>
+        <div>Des produits locaux, sans additifs ni conservateurs, respectueux de la santé et de l’environnement.</div>
+      </div>
+      <div class="col-md-4 mb-3 mb-md-0">
+        <div class="feature-icon"><i class="fa-solid fa-handshake"></i></div>
+        <div class="feature-title">Soutien aux producteurs</div>
+        <div>Collaboration directe avec les producteurs togolais pour une filière équitable et durable.</div>
+      </div>
+      <div class="col-md-4">
+        <div class="feature-icon"><i class="fa-solid fa-truck-fast"></i></div>
+        <div class="feature-title">Livraison rapide</div>
+        <div>Livraison à Lomé et dans les grandes villes, bientôt disponible à l’international.</div>
+      </div>
+    </div>
+  </div>
+
+  <section id="apropos" class="container mb-5">
+    <h2 class="section-title">À propos</h2>
+    <p class="apropos-text">Fondée à Lomé, au Togo, Mibaperty est une entreprise agroalimentaire qui se spécialise dans la valorisation des produits locaux. 
+        Elle se concentre sur la production artisanale d'huile de palme vierge et de vin de palme traditionnel. L'entreprise compte 20 employés et réalise un chiffre d’affaires annuel d'environ 100 millions FCFA. En collaboration directe avec des producteurs locaux, Mibaperty propose des produits naturels et éthiques, principalement commercialisés à Lomé et dans les grandes villes togolaises. Son ambition est de s'étendre vers les pays voisins tels que le Bénin, le Ghana, la Côte d’Ivoire, ainsi que vers la diaspora africaine à travers un site e-commerce en développement. 
+        Sa clientèle est variée, allant des particuliers amateurs de traditions culinaires aux restaurants et épiceries bio spécialisées.</p>
+  </section>
+
+  <section id="produits" class="container mb-5">
+    <h2 class="section-title">Nos produits</h2>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card h-100 text-center">
+          <img src="1.png" class="card-img-top" alt="Huile de palme vierge">
+          <div class="card-body">
+            <h5 class="card-title">Huile de palme vierge</h5>
+            <span class="prix">45 DH/L</span>
+            <p class="card-text">Huile extraite de manière artisanale, idéale pour une cuisine authentique.</p>
+            <a href="#commander" class="btn btn-mibaperty">Commander</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 text-center">
+          <img src="2.png" class="card-img-top" alt="Vin de palme traditionnel">
+          <div class="card-body">
+            <h5 class="card-title">Vin de palme traditionnel</h5>
+            <span class="prix">35 DH/L</span>
+            <p class="card-text">Boisson artisanale et naturelle, issue de la fermentation du palmier.</p>
+            <a href="#commander" class="btn btn-mibaperty">Commander</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 text-center">
+          <img src="3.png" class="card-img-top" alt="Savon naturel au palmier">
+          <div class="card-body">
+            <h5 class="card-title">Savon naturel au palmier</h5>
+            <span class="prix">25 DH/unité</span>
+            <p class="card-text">Savon artisanal à base d'huile de palme, doux pour la peau et 100% naturel.</p>
+            <a href="#commander" class="btn btn-mibaperty">Commander</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 text-center">
+          <img src="1.png" class="card-img-top" alt="Huile de palme premium">
+          <div class="card-body">
+            <h5 class="card-title">Huile de palme premium</h5>
+            <span class="prix">60 DH/L</span>
+            <p class="card-text">Huile de palme filtrée, goût raffiné, idéale pour les plats traditionnels.</p>
+            <a href="#commander" class="btn btn-mibaperty">Commander</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 text-center">
+          <img src="2.png" class="card-img-top" alt="Vin de palme doux">
+          <div class="card-body">
+            <h5 class="card-title">Vin de palme doux</h5>
+            <span class="prix">40 DH/L</span>
+            <p class="card-text">Vin de palme légèrement sucré, parfait pour l’apéritif ou les cocktails.</p>
+            <a href="#commander" class="btn btn-mibaperty">Commander</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 text-center">
+          <img src="3.png" class="card-img-top" alt="Savon exfoliant au palmier">
+          <div class="card-body">
+            <h5 class="card-title">Savon exfoliant au palmier</h5>
+            <span class="prix">30 DH/unité</span>
+            <p class="card-text">Savon enrichi en grains naturels pour une exfoliation douce et efficace.</p>
+            <a href="#commander" class="btn btn-mibaperty">Commander</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="commander" class="container mb-5">
+    <h2 class="section-title">Passer une commande</h2>
+    <form action="https://formspree.io/f/mjkagzvr" method="POST" enctype="multipart/form-data" class="row g-3">
+      <div class="col-md-6">
+        <input type="text" name="nom" class="form-control" placeholder="Votre nom" required>
+      </div>
+      <div class="col-md-6">
+        <input type="email" name="email" class="form-control" placeholder="Votre email" required>
+      </div>
+      <div class="col-md-6">
+        <input type="text" name="telephone" class="form-control" placeholder="Votre téléphone">
+      </div>
+      <div class="col-md-6">
+        <select name="produit" class="form-select" required>
+          <option value="">-- Choisissez un produit --</option>
+          <option value="Huile de palme vierge">Huile de palme vierge</option>
+          <option value="Vin de palme traditionnel">Vin de palme traditionnel</option>
+          <option value="Savon naturel au palmier">Savon naturel au palmier</option>
+          <option value="Huile de palme premium">Huile de palme premium</option>
+          <option value="Vin de palme doux">Vin de palme doux</option>
+          <option value="Savon exfoliant au palmier">Savon exfoliant au palmier</option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <input type="number" name="quantite" min="1" class="form-control" placeholder="Quantité" required>
+      </div>
+      <div class="col-md-6">
+        <textarea name="message" class="form-control" placeholder="Informations complémentaires"></textarea>
+      </div>
+      <div class="col-12">
+        <button type="submit" class="btn btn-mibaperty w-100">Envoyer la commande</button>
+      </div>
+    </form>
+  </section>
+
+  <section id="contact" class="container mb-5">
+    <h2 class="section-title">Contact</h2>
+    <p><i class="fa-solid fa-envelope"></i> Email : <a href="mailto:contact@mibaperty.com" style="color:#43a047;">mibaperty@gmail.com</a></p>
+    <p><i class="fa-brands fa-whatsapp"></i> Téléphone / WhatsApp : <a href="tel:+212600000000" style="color:#43a047;">+228 90 00 01 02</a></p>
+    <p><i class="fa-solid fa-location-dot"></i> Adresse : Lomé, Togo</p>
+  </section>
+
+  <footer>
+    <div class="footer-links mb-2">
+      <a href="#accueil">Accueil</a> |
+      <a href="#apropos">À propos</a> |
+      <a href="#produits">Produits</a> |
+      <a href="#commander">Commander</a> |
+      <a href="#contact">Contact</a>
+    </div>
+    <div>
+      &copy; 2025 Mibaperty - Tous droits réservés
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
